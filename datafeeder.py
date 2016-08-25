@@ -17,3 +17,14 @@ class DirDataFeeder(object):
 
             result.append(self.file_list[index])
         return result
+
+class LazyBuffer(object):
+    def __init__(self, getter):
+        self._getter = getter
+        self._buffer = []
+    def get(self, amount, *args):
+        while len(self._buffer) < amount :
+            self._buffer.extend( self._getter(*args) )
+        result = self._buffer[:amount]
+        self._buffer = self._buffer[amount:]
+        return result
