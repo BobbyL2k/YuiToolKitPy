@@ -2,8 +2,8 @@ from . import utilities as util
 
 
 class DirDataFeeder(object):
-    def __init__(self, dir):
-        self.file_list = util.get_file_list(dir)
+    def __init__(self, path):
+        self.file_list = util.get_file_list(path)
         self.counter = 0
 
     def get_batch(self, size, shuffle=False):
